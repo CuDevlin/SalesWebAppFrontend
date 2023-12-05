@@ -12,7 +12,7 @@ const Order = () =>
                 const data = await response.json();
                 setChartData(data);
             } catch (error) {
-                console.error('Error fetching order:', error);
+                console.error('Error fetching orders:', error);
             }
         };
 
