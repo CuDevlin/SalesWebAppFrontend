@@ -8,22 +8,22 @@ import CharData from "./scenes/chartdata";
 function App() {
 
 
-  return (
-  <div>
-          <TopBar />
-          <div className="app">
-              <AppSidebar />
+    return (
+        <div>
+            <TopBar />
+            <div className="app">
+                <AppSidebar />
 
-              <main className="content">
-                  <Routes>
-                      <Route path="/" element={<Dashboard />} />
-                      <Route path="/data" element={<TableData />} />
-                      <Route path="/chart" element={<CharData />} />
-                  </Routes>
-              </main>
-          </div>
-  </div>
-  );
+                <main className="content">
+                    <Routes>
+                        <Route path="/" element={<Dashboard />} />
+                        <Route path="/data" element={<TableData />} />
+                        <Route path="/chart" element={<CharData />} />
+                    </Routes>
+                </main>
+            </div>
+        </div>
+    );
 }
 
 export default App;

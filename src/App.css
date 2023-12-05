@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.logo {
+.App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -13,8 +13,8 @@
   }
 }
 
-.header {
-  background-color: #011e5c;
+.App-header {
+  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@
   color: white;
 }
 
-.link {
+.App-link {
   color: #61dafb;
 }
 
