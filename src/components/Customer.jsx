@@ -12,7 +12,7 @@ const Customer = () =>
                 const data = await response.json();
                 setChartData(data);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error('Error fetching customers:', error);
             }
         };
 
