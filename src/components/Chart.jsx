@@ -1,10 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Chart from 'chart.js/auto';
 
-import IconButton from '@mui/material/IconButton';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
 const aggregateData = (data) => {
   return data.reduce((result, current) => {
     const existingEntry = result.find((entry) => entry.purchasedate === current.purchasedate);
@@ -22,18 +18,15 @@ const aggregateData = (data) => {
 const BarChart = () => {
   const [chartData, setChartData] = useState([]);
 
-  let today = new Date(Date.now());
-
-  let lastMonth = today.getFullYear() + '-' + today.getMonth();
-
-  const [monthOffset, setMonthOffset] = useState(lastMonth);
-
   const chartRef = useRef(null); // Reference to the chart instance
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/statistics/${monthOffset}`);
+        // Fetch data for the previous month
+        const today = new Date();
+        const lastMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        const response = await fetch(`http://localhost:8080/statistics/${lastMonth.toISOString().slice(0, 7)}`);
         const data = await response.json();
 
         console.log('Fetched data:', data);
@@ -46,23 +39,12 @@ const BarChart = () => {
     };
 
     fetchData();
-  }, [monthOffset]);
-
-  const handleMonthChange = (offset) => {
-    const currentMonth = new Date(monthOffset + '-01');
-    const newMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + offset, 1);
-    setMonthOffset(
-      `${newMonth.getFullYear()}-${(newMonth.getMonth() + 1).toString().padStart(2, '0')}`
-    );
-  };
+  }, []);
 
   useEffect(() => {
     const currentChartRef = chartRef.current;
-    // Check if the chartRef is initialized
-    if (chartRef.current && chartRef.current.chartInstance) {
-      // Destroy the existing chart instance
-      chartRef.current.chartInstance.destroy();
-    }
+    const canvas = chartRef.current;
+    const ctx = canvas.getContext('2d');
 
     const chartLabels = chartData.map((entry) => entry.purchasedate);
     const chartValues = chartData.map((entry) => entry.price);
@@ -97,8 +79,6 @@ const BarChart = () => {
       },
     };
 
-    const canvas = chartRef.current;
-    const ctx = canvas.getContext('2d');
     const newChart = new Chart(ctx, {
       type: 'bar',
       data: chartDataConfig,
@@ -108,26 +88,15 @@ const BarChart = () => {
     chartRef.current.chartInstance = newChart;
 
     return () => {
-        if (currentChartRef && currentChartRef.chartInstance) {
-          currentChartRef.chartInstance.destroy();
-        }
-      };
-    }, [chartData, monthOffset]);
+      if (currentChartRef && currentChartRef.chartInstance) {
+        currentChartRef.chartInstance.destroy();
+      }
+    };
+  }, [chartData]);
 
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', paddingLeft: '1rem' }}>
-        <IconButton onClick={() => handleMonthChange(-1)}>
-          <ArrowBackIcon />
-        </IconButton>
-        <span>{monthOffset}</span>
-        <IconButton onClick={() => handleMonthChange(1)}>
-          <ArrowForwardIcon />
-        </IconButton>
-      </div>
-
       <div style={{ height: '400px' }}>
-        {/* Replace ResponsiveBar with canvas */}
         <canvas ref={chartRef}></canvas>
       </div>
     </div>
@@ -135,4 +104,5 @@ const BarChart = () => {
 };
 
 export default BarChart;
+
 

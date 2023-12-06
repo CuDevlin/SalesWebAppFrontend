@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
-import BarChart from "../../components/BarChart";
+import BarChart from "../../components/Chart";
 
-const CharData = () => {
+const ChartData = () => {
 
     return (
         <Box sx={{ height: 400, maxWidth: '98%', margin: '16px'}}>
@@ -11,4 +11,4 @@ const CharData = () => {
     );
 };
 
-export default CharData;
+export default ChartData;

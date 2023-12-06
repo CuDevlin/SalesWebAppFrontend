@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import {Box, IconButton} from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import { Link } from "react-router-dom";
 
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -18,7 +18,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
             onClick={() => setSelected(title)}
             icon={icon}
         >
-            <Link to={to} style={{ textDecoration: "none"}}>
+            <Link to={to} style={{ textDecoration: "none" }}>
                 <h5>{title}</h5>
             </Link>
         </MenuItem>
@@ -31,18 +31,19 @@ const AppSidebar = () => {
 
     return (
         <Box>
-            <Sidebar collapsed={isCollapsed} style={{ height: "100%", overflow: "hidden"}}>
+            <Sidebar collapsed={isCollapsed} style={{ height: "100%", overflow: "hidden" }}>
                 <Menu iconShape="square">
                     {/* Logo and menu icon */}
                     <MenuItem
                         onClick={() => setIsCollapsed(!isCollapsed)}
                         icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
                         style={{
-                            margin: "10px 0 20px 0"}}
+                            margin: "10px 0 20px 0"
+                        }}
                     >
                         {!isCollapsed && (
                             <Box display="flex" justifyContent="space-between" alignItems="center" ml="15px">
-                               <h3>Menu</h3>
+                                <h3>Menu</h3>
                                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                                     <MenuOutlinedIcon />
                                 </IconButton>
@@ -75,7 +76,16 @@ const AppSidebar = () => {
                         <Item
                             title="Chart"
                             to="/chart"
-                            icon={<BarChartIcon/>}
+                            icon={<BarChartIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                    </Box>
+                    <Box paddingLeft={isCollapsed ? undefined : "0%"}>
+                        <Item
+                            title="Statistics"
+                            to="/statistic"
+                            icon={< TableChartIcon/>}
                             selected={selected}
                             setSelected={setSelected}
                         />
