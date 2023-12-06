@@ -21,10 +21,10 @@ const Dashboard = () => {
 
             </Box>
 
-            <Box display="flex" justifyContent="space-between" marginBottom="20px">
+            <Box display="flex" justifyContent="space-evenly" marginBottom="20px">
                 <Box
-                    width="30%"
-                    padding="15px"
+                    width="25%"
+                    padding="5px"
                     border="1px solid #ddd"
                     borderRadius="5px"
                 >
@@ -34,8 +34,8 @@ const Dashboard = () => {
 
                 </Box>
                 <Box
-                    width="30%"
-                    padding="15px"
+                    width="25%"
+                    padding="5px"
                     border="1px solid #ddd"
                     borderRadius="5px"
                 >
@@ -43,8 +43,8 @@ const Dashboard = () => {
                     <Customer/>
                 </Box>
                 <Box
-                    width="30%"
-                    padding="15px"
+                    width="25%"
+                    padding="5px"
                     border="1px solid #ddd"
                     borderRadius="5px"
                 >

@@ -39,10 +39,10 @@ const StatData = () => {
                     </IconButton>
                 </div>
             </Box>
-            <Box display="flex" justifyContent="space-around" sx={{ padding: '15px' }}>
+            <Box display="flex" justifyContent="space-around" sx={{ padding: '10px' }}>
                 <Box
-                    width="30%"
-                    padding="15px"
+                    width="20%"
+                    padding="10px"
                     border="1px solid #ddd"
                     borderRadius="5px"
                 >

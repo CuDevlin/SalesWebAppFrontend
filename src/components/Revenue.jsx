@@ -20,7 +20,7 @@ const Revenue = () =>
     }, []);
 
     return (
-        <Box display="flex" justifyContent="flex-end" sx={{paddingRight: '15%'}}>
+        <Box display="flex" justifyContent="center" sx={{paddingRight: '15%'}}>
             <h2>{chartData} DKK</h2>
         </Box>
     )

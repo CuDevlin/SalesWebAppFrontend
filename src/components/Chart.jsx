@@ -96,8 +96,8 @@ const BarChart = () => {
 
   return (
     <div>
-      <div style={{ height: '400px' }}>
-        <canvas ref={chartRef}></canvas>
+      <div style={{ height: '67vh', width: '67vw' }}>
+        <canvas ref={chartRef} style={{ width: '100%', height: '100%' }}></canvas>
       </div>
     </div>
   );
