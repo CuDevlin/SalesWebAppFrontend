@@ -18,12 +18,11 @@ const aggregateData = (data) => {
 const BarChart = () => {
   const [chartData, setChartData] = useState([]);
 
-  const chartRef = useRef(null); // Reference to the chart instance
+  const chartRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch data for the previous month
         const today = new Date();
         const lastMonth = new Date(today.getFullYear(), today.getMonth(), 1);
         const response = await fetch(`http://localhost:8080/statistics/${lastMonth.toISOString().slice(0, 7)}`);
@@ -55,8 +54,8 @@ const BarChart = () => {
         {
           label: 'Value',
           data: chartValues,
-          backgroundColor: 'rgba(75,192,192,0.2)',
-          borderColor: 'rgba(75,192,192,1)',
+          backgroundColor: 'lightblue',
+          borderColor: 'skyblue',
           borderWidth: 1,
         },
       ],
